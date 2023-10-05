@@ -1,0 +1,11 @@
+Ordem de importancia
+
+usar somente em caso de incendio (depois corrige)
+	1ª !important
+	2ª inline
+Pode usar normalmente
+	3ª id
+	4ª class
+	5ª tag
+
+Bootstrap (aula 21-09-2023)
