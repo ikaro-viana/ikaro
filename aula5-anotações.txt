@@ -1,3 +1,4 @@
+<!--
 tamanhos de tela no em bootstrap
 
 Tela pequena		small			sm
@@ -5,3 +6,4 @@ Tela media		medium			md
 Tela Grande		 lange			lg
 Tela Extra Grande	extra lange		xl
 Telão			extra extra lange	xxl
+-->

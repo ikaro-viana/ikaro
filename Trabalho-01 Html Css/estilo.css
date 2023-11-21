@@ -1,0 +1,41 @@
+/* Estilo para o conteiner 1 */
+.container1 {
+    background-color: #bab7b7;
+    color: #333;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilo para a imagem de logomarca */
+.logo {
+    max-width: 100%;
+    height: auto;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+/* ... (outros estilos) ... */
+
+/* Estilo para o conteiner 6 */
+.container6 {
+    background-color: #f2f2f2;
+    color: #333;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+}
+
+/* ... (outros estilos do conteiner 6) ... */
+
+/* Estilo para o conteiner 7 */
+.container7 {
+    background-color: #d6d5d5;
+    color: #333;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+}
+
+/* ... (outros estilos do conteiner 7) ... */
