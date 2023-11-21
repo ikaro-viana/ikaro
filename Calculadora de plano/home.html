@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Calculadora de Plano de Saúde</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        table {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Calculadora de Plano de Saúde</h2>
+        <form id="healthCalculatorForm">
+            <div class="form-group">
+                <label for="age">Idade:</label>
+                <input type="number" class="form-control" id="age" required>
+            </div>
+            <div class="form-group">
+                <label for="weight">Peso (kg):</label>
+                <input type="number" class="form-control" id="weight" required>
+            </div>
+            <div class="form-group">
+                <label for="height">Altura (cm):</label>
+                <input type="number" class="form-control" id="height" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="calcularPlanosDeSaude()">Calcular</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        function calcularPlanosDeSaude() {
+            // Obter valores do formulário
+            var idade = parseInt(document.getElementById('age').value);
+            var peso = parseInt(document.getElementById('weight').value);
+            var altura = parseInt(document.getElementById('height').value);
+            var imc = calcularIMC(peso, altura);
+
+            // Calcular preços para Operadora A
+            var aBasico = 100 + (idade * 10 * (imc / 10));
+            var aPadrao = (150 + (idade * 15)) * (imc / 10);
+            var aPremium = (200 - (imc * 10) + (idade * 20)) * (1 + imc / 10);
+
+            // Calcular fator de comorbidade para Operadora B
+            var fatorComorbidade = calcularFatorComorbidade(imc);
+
+            // Calcular preços para Operadora B
+            var bBasico = 100 + (fatorComorbidade * 10 * (imc / 10));
+            var bPadrao = (150 + (fatorComorbidade * 15)) * (imc / 10);
+            var bPremium = (200 - (imc * 10) + (fatorComorbidade * 20)) * (1 + imc / 10);
+
+            // Exibir resultados em uma tabela
+            var tabelaResultado = '<table class="table">';
+            tabelaResultado += '<thead><tr><th>Plano</th><th>Operadora A</th><th>Operadora B</th></tr></thead>';
+            tabelaResultado += '<tbody>';
+            tabelaResultado += '<tr><td>Básico</td><td>' + aBasico.toFixed(2) + '</td><td>' + bBasico.toFixed(2) + '</td></tr>';
+            tabelaResultado += '<tr><td>Padrão</td><td>' + aPadrao.toFixed(2) + '</td><td>' + bPadrao.toFixed(2) + '</td></tr>';
+            tabelaResultado += '<tr><td>Premium</td><td>' + aPremium.toFixed(2) + '</td><td>' + bPremium.toFixed(2) + '</td></tr>';
+            tabelaResultado += '</tbody></table>';
+
+            document.getElementById('result').innerHTML = tabelaResultado;
+        }
+
+        function calcularIMC(peso, altura) {
+            var alturaEmMetros = altura / 100;
+            return peso / (alturaEmMetros * alturaEmMetros);
+        }
+
+        function calcularFatorComorbidade(imc) {
+            if (imc < 18.5) {
+                return 10;
+            } else if (imc < 24.9) {
+                return 1;
+            } else if (imc < 29.9) {
+                return 6;
+            } else if (imc < 34.9) {
+                return 10;
+            } else if (imc < 39.9) {
+                return 20;
+            } else {
+                return 30;
+            }
+        }
+    </script>
+</body>
+</html>
